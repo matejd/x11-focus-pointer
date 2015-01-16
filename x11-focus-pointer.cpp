@@ -1,4 +1,4 @@
-// Tiny X11 (Xlib) client that moves the pointer to the middle of newly-focused (Alt+Tab) windows.
+// Tiny X11 (Xlib) client that moves the pointer to the middle of newly-focused (via Alt+Tab) windows.
 //
 #include <X11/Xlib.h>
 #include <cstdio>
@@ -47,7 +47,7 @@ int main(int, char**)
         XEvent event;
         XNextEvent(display, &event);
         if (event.type == FocusIn) {
-            XFocusChangeEvent focusEvent = *reinterpret_cast<XFocusChangeEvent*>(&event);
+            const XFocusChangeEvent focusEvent = *reinterpret_cast<XFocusChangeEvent*>(&event);
             // Filter out unwanted focusIn events.
             if (focusEvent.mode != NotifyUngrab ||
                 focusEvent.detail != NotifyVirtual) {
@@ -68,7 +68,7 @@ int main(int, char**)
         else if (event.type == CreateNotify) {
             // A CreateNotify event reports when a window is created.
             // We need to add new windows to our list of watched windows.
-            XCreateWindowEvent createEvent = *reinterpret_cast<XCreateWindowEvent*>(&event);
+            const XCreateWindowEvent createEvent = *reinterpret_cast<XCreateWindowEvent*>(&event);
             XSelectInput(display, createEvent.window, eventMask);
         }
     }
