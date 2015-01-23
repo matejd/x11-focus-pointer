@@ -1,5 +1,8 @@
 // Tiny X11 (Xlib) client that moves the pointer to the middle of newly-focused (via Alt+Tab) windows.
 //
+// Example compile:
+// clang -Weverything -Wno-unreachable-code-return -g3 -o x11-focus-pointer.bin x11-focus-pointer.cpp -lX11
+//
 #include <X11/Xlib.h>
 #include <cstdio>
 #include <cstdlib>
