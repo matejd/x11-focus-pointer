@@ -6,7 +6,6 @@
 #include <X11/Xlib.h>
 #include <cstdio>
 #include <cstdlib>
-#include <cassert>
 
 int errorHandler(Display* display, XErrorEvent* event);
 
